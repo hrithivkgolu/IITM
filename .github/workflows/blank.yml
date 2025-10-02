@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Say hello
+      - name: name: 24f2000717@ds.study.iitm.ac.in
         run: echo Hello, world!
 
       - name: prime-cache-08f4942
