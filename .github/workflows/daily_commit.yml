@@ -1,11 +1,11 @@
-name: Frequent Commit Workflow
+name: Daily Commit Workflow
 
+# Run daily at 09:30 UTC (example)
 on:
   schedule:
-    # Every 3 minutes
-    - cron: '*/3 * * * *'
-  workflow_dispatch: # optional: allows manual trigger
+    - cron: '30 9 * * *'
 
+  workflow_dispatch: # optional: allows manual trigger
 
 jobs:
   daily-commit:
