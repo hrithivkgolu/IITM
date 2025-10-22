@@ -6,19 +6,23 @@ on:
     - cron: '*/3 * * * *'
   workflow_dispatch: # optional: allows manual trigger
 
+
 jobs:
-  frequent-commit:
+  daily-commit:
     runs-on: ubuntu-latest
     steps:
+      # Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Step with your email in the name
       - name: Step for 24f2000717@ds.study.iitm.ac.in
         run: |
+          # Always modify the file to ensure a commit
           TIMESTAMP=$(date +'%Y-%m-%d %H:%M:%S')
-          echo "Frequent update at $TIMESTAMP" >> frequent_commit.txt
+          echo "Daily update at $TIMESTAMP" >> daily_commit.txt
           git config user.name "GitHub Action Bot"
           git config user.email "actions@github.com"
-          git add frequent_commit.txt
-          git commit -m "Frequent commit $TIMESTAMP" || echo "No changes to commit"
+          git add daily_commit.txt
+          git commit -m "Daily commit from workflow $TIMESTAMP" || echo "No changes to commit"
           git push
