@@ -3,7 +3,7 @@ name: Daily Commit Workflow
 # Run daily at 4:45 UTC (example)
 on:
   schedule:
-    - cron: '50 4 * * *'
+    - cron: '57 4 * * *'
 
 
   workflow_dispatch: # optional: allows manual trigger
@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
 
       # Step with your email in the name
-      - name: Daily commit by 24f2000717@ds.study.iitm.ac.in
+      - name: 24f2000717@ds.study.iitm.ac.in
         run: |
           TIMESTAMP=$(date +'%Y-%m-%d %H:%M:%S')
           echo "Daily update at $TIMESTAMP" >> daily_commit.txt
