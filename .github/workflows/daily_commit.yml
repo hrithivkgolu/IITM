@@ -3,7 +3,7 @@ name: Daily Commit Workflow
 # Run daily at 4:45 UTC (example)
 on:
   schedule:
-    - cron: '45 4 * * *'
+    - cron: '50 4 * * *'
 
 
   workflow_dispatch: # optional: allows manual trigger
@@ -17,13 +17,12 @@ jobs:
         uses: actions/checkout@v3
 
       # Step with your email in the name
-      - name: 24f2000717@ds.study.iitm.ac.in
+      - name: Daily commit by 24f2000717@ds.study.iitm.ac.in
         run: |
-          # Always modify the file to ensure a commit
           TIMESTAMP=$(date +'%Y-%m-%d %H:%M:%S')
           echo "Daily update at $TIMESTAMP" >> daily_commit.txt
-          git config user.name "GitHub Action Bot"
-          git config user.email "actions@github.com"
+          git config user.name "24f2000717@ds.study.iitm.ac.in"
+          git config user.email "24f2000717@ds.study.iitm.ac.in"
           git add daily_commit.txt
           git commit -m "Daily commit from workflow $TIMESTAMP" || echo "No changes to commit"
           git push
