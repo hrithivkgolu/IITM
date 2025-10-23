@@ -1,10 +1,12 @@
 name: Daily Commit Workflow
 
+permissions:
+  contents: write
+
 # Run daily at 4:45 UTC (example)
 on:
   schedule:
     - cron: '33 5 * * *'
-
 
   workflow_dispatch: # optional: allows manual trigger
 
@@ -15,14 +17,16 @@ jobs:
       # Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: true
+          fetch-depth: 0
 
-      # Step with your email in the name
-      - name: 24f2000717@ds.study.iitm.ac.in
+      - name: Commit and push daily file
         run: |
           TIMESTAMP=$(date +'%Y-%m-%d %H:%M:%S')
-          echo "24f2000717@ds.study.iitm.ac.in $(date +'%Y-%m-%d %H:%M:%S')" > daily_commit.txt
-          git config user.name "24f2000717@ds.study.iitm.ac.in"
+          echo "24f2000717@ds.study.iitm.ac.in $TIMESTAMP" > daily_commit.txt
+          git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add daily_commit.txt
           git commit -m "Daily commit from workflow $TIMESTAMP" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/hrithivkgolu/IITM.git
+          git push origin HEAD:main
