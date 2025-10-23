@@ -1,32 +1,28 @@
 name: Daily Commit Workflow
 
-permissions:
-  contents: write
-
-# Run daily at 4:45 UTC (example)
 on:
   schedule:
-    - cron: '33 5 * * *'
-
-  workflow_dispatch: # optional: allows manual trigger
+    - cron: '19 5 * * *'  # 05:19 UTC daily
+  workflow_dispatch:
 
 jobs:
   daily-commit:
     runs-on: ubuntu-latest
     steps:
-      # Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          persist-credentials: true
-          fetch-depth: 0
 
-      - name: 24f2000717@ds.study.iitm.ac.in
+      - name: Commit daily file
         run: |
-          TIMESTAMP=$(date +'%Y-%m-%d %H:%M:%S')
-          echo "24f2000717@ds.study.iitm.ac.in $TIMESTAMP" > daily_commit.txt
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Overwrite the file every run to ensure a change
+          echo "24f2000717@ds.study.iitm.ac.in $(date +'%Y-%m-%d %H:%M:%S')" > daily_commit.txt
+          
+          git config user.name "24f2000717@ds.study.iitm.ac.in"
+          git config user.email "24f2000717@ds.study.iitm.ac.in"
+          
           git add daily_commit.txt
-          git commit -m "Daily commit from workflow $TIMESTAMP" || echo "No changes to commit"
+          # Force commit even if content is the same
+          git commit --allow-empty -m "Daily commit from workflow $(date +'%Y-%m-%d %H:%M:%S')"
+          
+          # Push using GitHub-provided token
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/hrithivkgolu/IITM.git
