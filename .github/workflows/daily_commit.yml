@@ -25,4 +25,4 @@ jobs:
           git config user.email "24f2000717@ds.study.iitm.ac.in"
           git add daily_commit.txt
           git commit -m "Daily commit from workflow $TIMESTAMP" || echo "No changes to commit"
-          git push
+          git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/hrithivkgolu/IITM.git
