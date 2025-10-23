@@ -3,7 +3,7 @@ name: Daily Commit Workflow
 # Run daily at 4:45 UTC (example)
 on:
   schedule:
-    - cron: '14 5 * * *'
+    - cron: '19 5 * * *'
 
 
   workflow_dispatch: # optional: allows manual trigger
@@ -20,9 +20,9 @@ jobs:
       - name: 24f2000717@ds.study.iitm.ac.in
         run: |
           TIMESTAMP=$(date +'%Y-%m-%d %H:%M:%S')
-          echo "24f2000717@ds.study.iitm.ac.in" > daily_commit.txt
+          echo "Daily update at $TIMESTAMP" >> daily_commit.txt
           git config user.name "24f2000717@ds.study.iitm.ac.in"
           git config user.email "24f2000717@ds.study.iitm.ac.in"
           git add daily_commit.txt
-          git commit --allow-empty -m "Daily commit from workflow $(date +'%Y-%m-%d %H:%M:%S')"
+          git commit -m "Daily commit from workflow $TIMESTAMP" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/hrithivkgolu/IITM.git
