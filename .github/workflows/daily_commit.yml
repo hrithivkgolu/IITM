@@ -20,7 +20,7 @@ jobs:
       - name: 24f2000717@ds.study.iitm.ac.in
         run: |
           TIMESTAMP=$(date +'%Y-%m-%d %H:%M:%S')
-          echo "Daily update at $(date +'%Y-%m-%d %H:%M:%S')" > daily_commit.txt
+          echo "24f2000717@ds.study.iitm.ac.in $(date +'%Y-%m-%d %H:%M:%S')" > daily_commit.txt
           git config user.name "24f2000717@ds.study.iitm.ac.in"
           git config user.email "24f2000717@ds.study.iitm.ac.in"
           git add daily_commit.txt
